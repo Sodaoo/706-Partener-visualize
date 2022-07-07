@@ -1,0 +1,172 @@
+{
+  "nodes": [
+    {
+      "id": "Root",
+      "group": 1,
+      "image": {
+        "src": "images/sample.jpeg",
+        "width": 300,
+        "height": 200
+      },
+      "type": "Root",
+      "label": "dd"
+    },
+    { "id": "계약 현황", "group": 1, "type": "Category" },
+    { "id": "신세계푸드", "group": 1, "parent": "계약 현황" },
+    { "id": "E마트", "group": 1, "parent": "계약 현황" },
+    { "id": "풀무원", "group": 1, "parent": "계약 현황" },
+    { "id": "동서식품", "group": 1, "parent": "계약 현황" },
+    { "id": "동원", "group": 1, "parent": "계약 현황" },
+    { "id": "프레시원", "group": 1, "parent": "계약 현황" },
+    { "id": "웰스토리", "group": 1, "parent": "계약 현황" },
+    { "id": "대상", "group": 1, "parent": "계약 현황" },
+    { "id": "ddd", "group": 1, "type": "Category" },
+    { "id": "333", "group": 1, "type": "Category" },
+    { "id": "상온 창고", "group": 1, "parent": "ddd" },
+    { "id": "상온 창고", "group": 1, "parent": "333" },
+    { "id": "냉장 창고", "group": 1, "parent": "ddd" },
+    { "id": "냉동 창고", "group": 1, "parent": "ddd" },
+    { "id": "상품 유형", "group": 1, "type": "Category" },
+    { "id": "냉장", "group": 1, "parent": "상품 유형" },
+    { "id": "냉동", "group": 1, "parent": "상품 유형" },
+    { "id": "의류", "group": 1, "parent": "상품 유형" },
+    { "id": "화장품/잡화", "group": 1, "parent": "상품 유형" },
+    { "id": "레저/건강", "group": 1, "parent": "상품 유형" },
+    { "id": "육아/아동", "group": 1, "parent": "상품 유형" },
+    { "id": "생활/인테리어", "group": 1, "parent": "상품 유형" },
+    { "id": "상온식품", "group": 1, "parent": "상품 유형" },
+    { "id": "기타", "group": 1, "parent": "상품 유형" },
+    { "id": "누적출고량", "group": 1, "type": "Category" },
+    { "id": "고속도로근접", "group": 1, "parent": "누적출고량" },
+    { "id": "최신설비보유", "group": 1, "parent": "누적출고량" },
+    { "id": "누적출고량", "group": 1, "parent": "누적출고량" },
+    { "id": "상품운영량", "group": 1, "parent": "누적출고량" },
+    { "id": "당일택배출고", "group": 1, "parent": "누적출고량" },
+    { "id": "보유 설비", "group": 1, "type": "Category" },
+    { "id": "DAS", "group": 1, "parent": "보유 설비" },
+    { "id": "DPS", "group": 1, "parent": "보유 설비" },
+    { "id": "ASRS", "group": 1, "parent": "보유 설비" },
+    { "id": "Piece Sorter", "group": 1, "parent": "보유 설비" },
+    { "id": "Box Sorter", "group": 1, "parent": "보유 설비" },
+    { "id": "보험/인증/보안", "group": 1, "type": "Category" },
+    { "id": "화재보험 가입", "group": 1, "parent": "보험/인증/보안" },
+    { "id": "ISO 14001", "group": 1, "parent": "보험/인증/보안" },
+    { "id": "ISO 9001", "group": 1, "parent": "보험/인증/보안" },
+    {
+      "id": "사람, 차량에 대한 접근 통제 시스템 구축",
+      "group": 1,
+      "parent": "보험/인증/보안"
+    },
+    {
+      "id": "의사소통 및 교육 프로그램 참여",
+      "group": 1,
+      "parent": "보험/인증/보안"
+    },
+    { "id": "직원 식별 및 권한 부여", "group": 1, "parent": "보험/인증/보안" },
+    { "id": "부대시설", "group": 8, "type": "Category" },
+    { "id": "구내식당", "group": 8, "parent": "부대시설" },
+    { "id": "사무공간", "group": 8, "parent": "부대시설" },
+    { "id": "직원휴게실", "group": 8, "parent": "부대시설" },
+    { "id": "직원주차장", "group": 8, "parent": "부대시설" },
+    { "id": "입출문 Gate", "group": 8, "parent": "부대시설" },
+    { "id": "건물보안", "group": 8, "parent": "부대시설" },
+    { "id": "제공 서비스", "group": 9, "type": "Category" },
+    { "id": "보관/일반", "group": 9, "parent": "제공 서비스" },
+    { "id": "보관/야적", "group": 9, "parent": "제공 서비스" },
+    { "id": "보관/위험물보관", "group": 9, "parent": "제공 서비스" },
+    { "id": "작업/리얼패킹", "group": 9, "parent": "제공 서비스" },
+    { "id": "작업/세트포장", "group": 9, "parent": "제공 서비스" },
+    { "id": "운송/택배운송", "group": 9, "parent": "제공 서비스" },
+    { "id": "운송/새벽자차배송", "group": 9, "parent": "제공 서비스" }
+  ],
+  "links": [
+    {
+      "source": "Root",
+      "target": "계약 현황"
+    },
+    { "source": "계약 현황", "target": "신세계푸드" },
+    { "source": "계약 현황", "target": "E마트" },
+    { "source": "계약 현황", "target": "풀무원" },
+    { "source": "계약 현황", "target": "동서식품" },
+    { "source": "계약 현황", "target": "동원" },
+    { "source": "계약 현황", "target": "프레시원" },
+    { "source": "계약 현황", "target": "웰스토리" },
+    { "source": "계약 현황", "target": "대상" },
+    {
+      "source": "Root",
+      "target": "ddd"
+    },
+    {
+      "source": "Root",
+      "target": "333"
+    },
+    { "source": "ddd", "target": "상온 창고" },
+    { "source": "ddd", "target": "냉장 창고" },
+    { "source": "ddd", "target": "냉동 창고" },
+    {
+      "source": "Root",
+      "target": "상품 유형"
+    },
+    { "source": "상품 유형", "target": "냉장" },
+    { "source": "상품 유형", "target": "냉동" },
+    { "source": "상품 유형", "target": "의류" },
+    { "source": "상품 유형", "target": "화장품/잡화" },
+    { "source": "상품 유형", "target": "레저/건강" },
+    { "source": "상품 유형", "target": "육아/아동" },
+    { "source": "상품 유형", "target": "생활/인테리어" },
+    { "source": "상품 유형", "target": "상온식품" },
+    { "source": "상품 유형", "target": "기타" },
+    {
+      "source": "Root",
+      "target": "누적출고량"
+    },
+    { "source": "누적출고량", "target": "고속도로근접" },
+    { "source": "누적출고량", "target": "최신설비보유" },
+    { "source": "누적출고량", "target": "누적출고량" },
+    { "source": "누적출고량", "target": "상품운영량" },
+    { "source": "누적출고량", "target": "당일택배출고" },
+    {
+      "source": "Root",
+      "target": "보유 설비"
+    },
+    { "source": "보유 설비", "target": "DAS" },
+    { "source": "보유 설비", "target": "DPS" },
+    { "source": "보유 설비", "target": "ASRS" },
+    { "source": "보유 설비", "target": "Piece Sorter" },
+    { "source": "보유 설비", "target": "Box Sorter" },
+    {
+      "source": "Root",
+      "target": "보험/인증/보안"
+    },
+    { "source": "보험/인증/보안", "target": "화재보험 가입" },
+    { "source": "보험/인증/보안", "target": "ISO 14001" },
+    { "source": "보험/인증/보안", "target": "ISO 9001" },
+    {
+      "source": "보험/인증/보안",
+      "target": "사람, 차량에 대한 접근 통제 시스템 구축"
+    },
+    { "source": "보험/인증/보안", "target": "의사소통 및 교육 프로그램 참여" },
+    { "source": "보험/인증/보안", "target": "직원 식별 및 권한 부여" },
+    {
+      "source": "Root",
+      "target": "부대시설"
+    },
+    { "source": "부대시설", "target": "구내식당" },
+    { "source": "부대시설", "target": "사무공간" },
+    { "source": "부대시설", "target": "직원휴게실" },
+    { "source": "부대시설", "target": "직원주차장" },
+    { "source": "부대시설", "target": "입출문 Gate" },
+    { "source": "부대시설", "target": "건물보안" },
+    {
+      "source": "Root",
+      "target": "제공 서비스"
+    },
+    { "source": "제공 서비스", "target": "보관/일반" },
+    { "source": "제공 서비스", "target": "보관/야적" },
+    { "source": "제공 서비스", "target": "보관/위험물보관" },
+    { "source": "제공 서비스", "target": "작업/리얼패킹" },
+    { "source": "제공 서비스", "target": "작업/세트포장" },
+    { "source": "제공 서비스", "target": "운송/택배운송" },
+    { "source": "제공 서비스", "target": "운송/새벽자차배송" }
+  ]
+}
