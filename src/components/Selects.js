@@ -1,4 +1,3 @@
-/* External Dependencies
 // Tailwind Select Checkbox
 //  1.
 //  2. 
@@ -8,7 +7,12 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 // import { colourOptions } from "./docs/data";
 import SelectObjList from "../data/SelectObj.json"
-*/
+
+/* Mobx */
+import { useStore } from '../store'
+import { observer } from 'mobx-react-lite'
+
+
 /*
 Select 需要的数据格式：
 export const colourOptions: readonly ColourOption[] = [
@@ -24,22 +28,24 @@ export const colourOptions: readonly ColourOption[] = [
   { value: 'silver', label: 'Silver', color: '#666666' },
 ];
 */
-/*
+
 const SelectObj = SelectObjList.lists
 // console.log("SelectObj....", SelectObj)
 const animatedComponents = makeAnimated();
 
-export default function Selects({callbackfunc}) {
 
+
+const Selects = () => {
+  const {cateStore, nodeStore} = useStore()
   const selectref = useRef(null)
 
   const onMenuCloseHandler = (e) => {
-    // console.log("content: ",e.target);
-    // console.log("content: ", selectref.current.props.value);
-    const checkedlist = selectref.current.props.value
-    const labels = checkedlist.map(item => item.label)
-    console.log("labels   " , labels)
-    callbackfunc(labels)
+    console.log("xxxxxxxxxxxxxx")
+    const checked_ = selectref.current.props.value
+    const labels = checked_.map(item => item.label)
+    cateStore.setCheckedList(labels)
+    nodeStore.nodesItem(labels)
+    nodeStore.linksItem(labels)
   }
 
   return (
@@ -59,5 +65,5 @@ export default function Selects({callbackfunc}) {
     </div>
   );
 }
-*/
 
+export default Selects

@@ -1,16 +1,20 @@
 import { useCallback, useEffect,useState,useRef } from "react";
 import ForceGraph3D from "react-force-graph-3d";
 import SpriteText from "three-spritetext";
-import data from "./data/data_.json";
+// import data from "./data/partner_data.json";
 import * as THREE from "three";
 import Selects from "./components/Selects"
 
-import category from "./data/CategoryList.json"
-const categoryList = category.cates
+/* Mobx */
+import { useStore } from './store'
+import { observer } from 'mobx-react-lite'
+
+// import category from "./data/CategoryList.json"
+// const categoryList = category.cates
 // console.log("cates....", categoryList)
 
 
-export default function App() {
+const App = () => {
   const drawNormalNode = useCallback((node) => {
     const sprite = new SpriteText(node.id, 5);
     sprite.color = "#000000";
@@ -58,62 +62,74 @@ export default function App() {
     [drawCategoryNode, drawImageNode, drawNormalNode]
   );
 
-  // console.log("data.nodes", data.nodes)
-  // data.nodes.filter((node) => ( node.type === "Category")
-  const [links, setLinks] = useState(data.links);
-  const [nodes, setNodes] = useState(data.nodes);
-  const [catelist, setcatelist]= useState(categoryList.slice(0,80));
-
-  console.log("links.....", links)
-
-
-  const callbackFunction = (childData) => {   // 子传父设置类别数据
-    setcatelist(childData);
-  };
-  
-
-  const rootList = nodes.filter((node) => ( node.type === "Root"))
+  const { nodeStore, cateStore } = useStore()
+  // // console.log("cateStore....", cateStore.list)
+  // // console.log("data.nodes", data.nodes)
+  // // data.nodes.filter((node) => ( node.type === "Category")
+  // const [nodes, setNodes] = useState(data.nodes);
+  // const [links, setLinks] = useState(data.links);
+  // console.log("nodes ", nodes)
+  // console.log("links ", links)
+  // const [catelist, setcatelist]= useState(categoryList.slice(0,80));
   // 根据用户选择的 categorylist 的变化，
   // 显示前端的数据
-  // nodes = ..  setLinks
-  // links = ..  setNodes
-  useEffect(() => {
-    // console.log("nodes.filter((node) => ( catelist.includes(node.id)))]", nodes.filter((node) => ( catelist.includes(node.id))));
-    const catenodes = nodes.filter((node) => ( catelist.includes(node.id)))
-    const userodes = nodes.filter((node) => ( catelist.includes(node.parent)))
-    setNodes([ ...rootList , ...catenodes , ...userodes ]);
-  }, [catelist]);
+  // console.log("nodes...",nodes)
+  //console.log("cateStore.list...",cateStore.list)
+  // useEffect(() => {
+  // console.log("cateStore.list...",cateStore.list)
+  // console.log("links...",links)
+  // console.log("links[0]", links[0])
+  // console.log("links[0].source...",links[0].source)
+  //   const sourceLinks = links.filter((link) => ( cateStore.list.includes(link.source)))
+  //   const targetLinks = links.filter((link) => ( cateStore.list.includes(link.target)))
+  //   console.log("targetLinks, source", targetLinks[0], sourceLinks[0])
+  //   console.log("[ ...targetLinks , ...sourceLinks ], links", [ ...targetLinks , ...sourceLinks ])
+  //   setLinks([ ...targetLinks , ...sourceLinks ]);
+  //   // console.log("nodes.", nodes);
+  // }, [cateStore.list, cateStore]);
+  // const rootList = nodes.filter((node) => ( node.type === "Root"))
+  // useEffect(() => {
+  //   const catenodes = nodes.filter((node) => ( cateStore.list.includes(node.id)))
+  //   const userodes = nodes.filter((node) => ( cateStore.list.includes(node.parent)))
+  //   setNodes([ ...rootList , ...catenodes , ...userodes ]);
+  // }, [cateStore.list, cateStore]);
+  const [nodes, setNodes] = useState(nodeStore.nodes)
+  const [links, setLinks] = useState(nodeStore.links)
 
   useEffect(() => {
-    const targetLinks = links.filter((link) => ( catelist.includes(link.target)))
-    const sourceLinks = links.filter((link) => ( catelist.includes(link.source)))
-    console.log("targetLinks, source", targetLinks, sourceLinks)
-    setLinks([ ...targetLinks , ...sourceLinks ]);
-    // console.log("nodes.", nodes);
-  }, [catelist]);
+    setNodes(nodeStore.nodes);
+    setLinks(nodeStore.links)
+    return () => {
+      setNodes([]);
+      setLinks([]);  
+    }
+  }, [cateStore.list]);
 
-  console.log(nodes, links)
   return (
     <div>
       <div className="flex justify-between bg-black items-center">
         <span className="text-center text-white"> MeshLambertMaterial Bug</span>
         <div className="grid grid-cols-1">
-          <Selects callbackfunc={callbackFunction}/>
           {/* <button className="rounded-full bg-gray-400 px-3 py-1  mx-4 my-1"> 过滤</button> */}
         </div>
       </div>
-      <ForceGraph3D
-        className="bg-gray-300 relative"
+      <div className="relative">
+        <Selects className="absolute float-right"/>     {/* callbackfunc={callbackFunction} */}
+
+         <ForceGraph3D
+        className="relative"
         // graphData={data}
         graphData={{
           nodes: nodes,
           links: links
         }}
         nodeAutoColorBy="group"
-        nodeLabel="id"
+        nodeLabel="description"
         nodeThreeObject={nodeThreeObject}
-        linkWidth={4}
-      />
+        linkWidth={10}
+        />
+      </div>
     </div>
   );
-}
+};
+export default observer(App);
