@@ -1,7 +1,7 @@
 // 导入模块
-import CategotyStore from "./Category.Store"
-import NodeStore from "./Node.Store"
-import SidebarStore from "./Sidebar.Store"
+import CategotyStore from "./Category.Store.js"
+import NodeStore from "./Node.Store.js"
+import SidebarStore from "./Sidebar.Store.js"
 import React from "react"
 
 class RootStore {
