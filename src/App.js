@@ -1,9 +1,13 @@
-import { useCallback, useEffect,useState,useRef } from "react";
+import { useCallback, useEffect,useState } from "react";
 import ForceGraph3D from "react-force-graph-3d";
 import SpriteText from "three-spritetext";
 // import data from "./data/partner_data.json";
 import * as THREE from "three";
-import Selects from "./components/Selects"
+
+/* Sidebar */
+import Sidebar from "./components/Sidebar";
+// import { useGlobalContext } from './components/Sidebar/context';
+// import {FaBars} from 'react-icons/fa';
 
 /* Mobx */
 import { useStore } from './store'
@@ -16,13 +20,16 @@ import { observer } from 'mobx-react-lite'
 
 const App = () => {
   const drawNormalNode = useCallback((node) => {
-    const sprite = new SpriteText(node.id, 5);
-    sprite.color = "#000000";
-    sprite.backgroundColor = "#D8D8D8";
-    sprite.padding = [8, 4];
-    sprite.textHeight = 5;
-    sprite.borderRadius = 10;
-
+    // const sprite = new SpriteText(node.id, 5);
+    // sprite.color = "#000000";
+    // sprite.backgroundColor = "#D8D8D8";
+    // sprite.padding = [8, 4];
+    // sprite.textHeight = 5;
+    // sprite.borderRadius = 10;
+    const sprite = new SpriteText(node.id);
+    sprite.material.depthWrite = false; // make sprite background transparent
+    sprite.color = '#6c757d' // 'node.color';
+    sprite.textHeight = 8;
     return sprite;
   }, []);
 
@@ -62,7 +69,8 @@ const App = () => {
     [drawCategoryNode, drawImageNode, drawNormalNode]
   );
 
-  const { nodeStore, cateStore } = useStore()
+  
+
   // // console.log("cateStore....", cateStore.list)
   // // console.log("data.nodes", data.nodes)
   // // data.nodes.filter((node) => ( node.type === "Category")
@@ -93,6 +101,9 @@ const App = () => {
   //   const userodes = nodes.filter((node) => ( cateStore.list.includes(node.parent)))
   //   setNodes([ ...rootList , ...catenodes , ...userodes ]);
   // }, [cateStore.list, cateStore]);
+
+
+  const { nodeStore, cateStore } = useStore()
   const [nodes, setNodes] = useState(nodeStore.nodes)
   const [links, setLinks] = useState(nodeStore.links)
 
@@ -106,19 +117,19 @@ const App = () => {
   }, [cateStore.list]);
 
   return (
-    <div>
-      <div className="flex justify-between bg-black items-center">
-        <span className="text-center text-white"> MeshLambertMaterial Bug</span>
-        <div className="grid grid-cols-1">
-          {/* <button className="rounded-full bg-gray-400 px-3 py-1  mx-4 my-1"> 过滤</button> */}
+    <div className="relative">
+      <div className="flex justify-between bg-gray-500 items-center">
+        <span> </span>
+        <div className="ml-10">
+          <span className="text-center text-white"> 706 Notion 伙伴们星图 </span>
+          <span className=" text-sm  text-gray-300 mt-4 pt-4"> 10 周年撒花 ✿✿ヽ(°▽°)ノ✿ </span>
         </div>
+        <Sidebar className="float"/>
       </div>
-      <div className="relative">
-        <Selects className="absolute float-right"/>     {/* callbackfunc={callbackFunction} */}
-
-         <ForceGraph3D
-        className="relative"
-        // graphData={data}
+        
+      <ForceGraph3D
+        backgroundColor='#343a40'
+        className="absolute top-0 left-0"
         graphData={{
           nodes: nodes,
           links: links
@@ -126,10 +137,20 @@ const App = () => {
         nodeAutoColorBy="group"
         nodeLabel="description"
         nodeThreeObject={nodeThreeObject}
-        linkWidth={10}
+        nodeResolution={6}  // 较高的值会产生更平滑的球体
+        //linkResolution={1}  // 较高的值会产生更平滑的球体
+        linkCurvature={0.2}  // 较高的值会产生更平滑的球体
+        // nodeThreeObject={ (node => {
+        //   const sprite = new SpriteText(node.id);
+        //   // sprite.material.depthWrite = true; // make sprite background transparent
+        //   sprite.color = node.color;
+        //   sprite.textHeight = 8;
+        //   return sprite;
+        // })}
+        linkWidth={2}
+        linkColor='#fec89a'
         />
       </div>
-    </div>
   );
 };
 export default observer(App);

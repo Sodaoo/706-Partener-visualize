@@ -1,10 +1,9 @@
 
 import {  makeAutoObservable } from 'mobx'
-import { observer } from 'mobx-react-lite'
 import data from "../data/partner_data.json";
 import {toJS} from "mobx";
 
-class nodeStore {
+class NodeStore {
   nodes = data.nodes;
   links = data.links;
 
@@ -42,4 +41,4 @@ class nodeStore {
   }
 }
 
-export default nodeStore;
+export default NodeStore;

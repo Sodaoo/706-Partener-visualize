@@ -10,7 +10,6 @@ import SelectObjList from "../data/SelectObj.json"
 
 /* Mobx */
 import { useStore } from '../store'
-import { observer } from 'mobx-react-lite'
 
 
 /*
@@ -36,7 +35,7 @@ const animatedComponents = makeAnimated();
 
 
 const Selects = () => {
-  const {cateStore, nodeStore} = useStore()
+  const {cateStore, nodeStore, sidebarStore} = useStore()
   const selectref = useRef(null)
 
   const onMenuCloseHandler = (e) => {
@@ -46,6 +45,8 @@ const Selects = () => {
     cateStore.setCheckedList(labels)
     nodeStore.nodesItem(labels)
     nodeStore.linksItem(labels)
+
+    sidebarStore.setSidebar()
   }
 
   return (
@@ -58,7 +59,15 @@ const Selects = () => {
           }}
           closeMenuOnSelect={false}
           components={animatedComponents}
-          defaultValue={[SelectObj[0], SelectObj[1]]}
+
+          // 每次渲染 Selects 组件时，都要 cateStore.list 初始化当前选中的列表
+          defaultValue = {
+            SelectObj.filter(obj => 
+              cateStore.list.includes(obj.label) 
+            )
+          }
+          // defaultValue = { cateStore.initChecked.map(i => SelectObj[i])} 
+          // defaultValue={[SelectObj[0], SelectObj[1]]}
           isMulti
           options={SelectObj}
         />

@@ -1,13 +1,15 @@
 // 导入模块
-import CategotyStore from "./category.Store"
-import nodeStore from "./node.Store"
+import CategotyStore from "./Category.Store"
+import NodeStore from "./Node.Store"
+import SidebarStore from "./Sidebar.Store"
 import React from "react"
 
 class RootStore {
   // 组合模块
   constructor() {
     this.cateStore = new CategotyStore()
-    this.nodeStore = new nodeStore()
+    this.nodeStore = new NodeStore()
+    this.sidebarStore = new SidebarStore()
   }
 }
 // 实例化根store注入context

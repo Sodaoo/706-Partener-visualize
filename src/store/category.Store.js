@@ -1,6 +1,6 @@
 
 import {  makeAutoObservable } from 'mobx'
-import { observer } from 'mobx-react-lite'
+//import { observer } from 'mobx-react-lite'
 //import SelectObj from "../data/SelectObj.json"
 import CateObjList from "../data/CategoryList.json"
 // import data from "../data/partner_data.json";
@@ -11,7 +11,7 @@ import CateObjList from "../data/CategoryList.json"
 class CategotyStore {
   // nodes = data.nodes;
   // links = data.links;
-  // defaultChecked = [1,2];
+  // initChecked = [1,2];
   list = CateObjList.cates.slice(0,2)  ;
 
   // list = CateObjList.cates.map((item,index) => ({
